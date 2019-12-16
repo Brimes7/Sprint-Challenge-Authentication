@@ -2,17 +2,19 @@
   complete the middleware code to check if the user is logged in
   before granting access to the next middleware/route handler
 */
-const users = require('../users/users-model.js');
+//const users = require('../users/users-model.js');
+const jokesRouter = require('../jokes/jokes-router.js');
 const bcrypt = require('bcryptjs');
 
 module.exports = (req, res, next) => {
 
+  //should this be req.body?
   const {username, password} = req.headers
 
   if(!(username && password)){
   res.status(401).json({ you: 'shall not pass!' });
   } else {
-    users.findBy({ username })
+    jokesRouter.findBy({ username })
       .first()
       .then(_user => {
         if(_user && bcrypt.compareSync(password, _user.password)) {

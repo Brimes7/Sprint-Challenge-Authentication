@@ -14,6 +14,8 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
+
+//these are tied together for a reason connect authenticate to jokes.
 server.use('/api/jokes', authenticate, jokesRouter);
 server.use('/api/users', usersRouter);
 

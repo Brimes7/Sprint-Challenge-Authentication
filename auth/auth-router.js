@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const Users = require('../users/users-model.js');
 const jwt = require('jsonwebtoken');
 const secrets = require('../config/secrets.js');
+const authorize = require('../authenticate-middleware.js');
 
 router.post('/register', (req, res) => {
   // implement registration
@@ -21,7 +22,7 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', authorize, (req, res) => {
   // implement login
   let { username, password } = req.body;
   Users.findBy({username})
