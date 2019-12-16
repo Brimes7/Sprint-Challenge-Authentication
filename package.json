@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "test": "cross-env DB_ENV=testing jest --watch",
     "server": "nodemon index.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": "git+https://github.com/LambdaSchool/Sprint-Challenge-Authentication.git",
   "keywords": [],
@@ -19,6 +23,7 @@
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
@@ -26,6 +31,9 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
   }
 }
