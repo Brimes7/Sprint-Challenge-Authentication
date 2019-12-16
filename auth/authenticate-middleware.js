@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
   const {username, password} = req.headers
 
   if(!(username && password)){
-  res.status(401).json({ you: 'shall not pass!' });
+      res.status(401).json({ message: 'you shall not pass!' });
   } else {
     jokesRouter.findBy({ username })
       .first()
