@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', authorize, (req, res) => {
   // implement login
-  let { username, password } = req.body;
+  let { username, password } = req.headers;
   Users.findBy({username})
   .first()
   .then(user => {
