@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const jwt = require('jsonwebtoken');
+
 const authenticate = require('../auth/authenticate-middleware.js');
 const authRouter = require('../auth/auth-router.js');
 const jokesRouter = require('../jokes/jokes-router.js');
@@ -24,6 +26,24 @@ server.get('/', (req, res) => {
     res.send("It's alive!");
 })
 
+//This is the token crap for the server
+server.get('/token', (req, res) => {
+
+    const payload = {
+        subject: 'thisuser',
+        userid: 'brandy',
+        username: 'habanero'
+    };
+
+    const secret = 'wethotuwasatoad';
+    const options = {
+        expiresIn: '1h'
+    };
+
+    const token = jwt.sign(payload, secret, options);
+
+    res.json(token);
+})
 
 // ---> GET (ALL)
 server.get('/api/jokes', (req, res) => {

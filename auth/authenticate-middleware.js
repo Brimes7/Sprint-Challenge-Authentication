@@ -3,7 +3,7 @@
   before granting access to the next middleware/route handler
 */
 //const users = require('../users/users-model.js');
-const jokesRouter = require('../jokes/jokes-router.js');
+const Users = require('../users/users-model.js');
 const bcrypt = require('bcryptjs');
 
 module.exports = (req, res, next) => {
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
   if(!(username && password)){
       res.status(401).json({ message: 'you shall not pass!' });
   } else {
-    jokesRouter.findBy({ username })
+    Users.findBy({ username })
       .first()
       .then(_user => {
         if(_user && bcrypt.compareSync(password, _user.password)) {
